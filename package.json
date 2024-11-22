@@ -1,0 +1,31 @@
+{
+  "name": "playwrightpoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npx ts-node src/utility/init.ts",
+    "test": "cross-env ENV=prod cucumber-js test/Login.feature",
+    "report": "npx ts-node src/utility/report.ts",
+    "test:failed": "cucumber-js -p rerun @rerun.txt"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.3.1",
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^20.11.6",
+    "cross-env": "^7.0.3",
+    "cucumber-html-reporter": "^6.0.0",
+    "dotenv": "^16.4.1",
+    "fs-extra": "^11.2.0",
+    "multiple-cucumber-html-reporter": "^3.6.1",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@types/pg": "^8.11.0",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  }
+}
