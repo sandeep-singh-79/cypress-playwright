@@ -1,0 +1,24 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation framework using TypeScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --project=%BROWSER%",
+    "test:headed": "npx playwright test --headed --project=%BROWSER%",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:chromeHeaded": "npx playwright test --headed --project=chromium",
+    "test:report": "npx playwright show-report",
+    "allure:report": "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^24.0.1",
+    "allure-playwright": "^3.2.2",
+    "eslint": "^9.29.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.4.5"
+  }
+}

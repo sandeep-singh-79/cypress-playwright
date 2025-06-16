@@ -1,0 +1,5 @@
+// Example fixture data
+{
+  "username": "testuser",
+  "password": "testpass"
+}

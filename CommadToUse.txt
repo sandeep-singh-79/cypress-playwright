@@ -1,5 +1,0 @@
-npm install
-
-npx playwright install
-
-npm test
