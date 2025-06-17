@@ -2,17 +2,17 @@
 node_modules/
 
 # Cypress output
-cypress/screenshots/
-cypress/videos/
-cypress/allure-results/
-cypress/allure-report/
-cypress/downloads/
+/cypress/cypress/screenshots/
+/cypress/cypress/videos/
+/cypress/allure-results/
+/cypress/allure-report/
+/cypress/cypress/downloads/
 
 # Playwright output
-playwright/test-results/
-playwright/playwright-report/
-playwright/allure-results/
-playwright/allure-report/
+/playwright/test-results/
+/playwright/playwright-report/
+/playwright/allure-results/
+/playwright/allure-report/
 
 # Logs
 npm-debug.log*

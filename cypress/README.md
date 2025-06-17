@@ -75,5 +75,35 @@ cypress/
 
 ---
 
+## API Automation Flows & Best Practices
+
+- **Order Placement Flow:** Automates the full Juice Shop order process via API, including address, delivery, payment, and order placement endpoints.
+- **Modular API Helpers:** All API calls are implemented as modular helpers in `support/apiHelpers.js` for reuse and maintainability.
+- **Centralized Test Data:** Test data is managed in `fixtures/` for easy updates and DRY code.
+- **Admin User Usage:** API tests use an admin user for setup and execution, ensuring repeatability and avoiding registration issues.
+- **Robust Status Checks:** All API-modifying actions use `isOkStatusCode` assertions for reliability.
+- **Idempotency:** Logic ensures products are only added to the basket if not already present, preventing unique constraint errors.
+- **Allure Reporting:** Integrated for API and UI tests, with results in `allure-results/` and HTML reports generated via `npm run allure:report`.
+- **.gitignore Hygiene:** All test artifacts (videos, screenshots, reports) are ignored for a clean repository.
+- **Best Practices:** Code follows DRY, SOLID, and modularization principles for maintainability and scalability.
+
+---
+
+## Scripts
+
+The following npm scripts are available in `package.json` for convenience:
+
+- `npm test` — Run all tests (headless)
+- `npm run open` — Open Cypress interactive UI
+- `npm run test:headed` — Open Cypress interactive UI (headed mode)
+- `npm run test:chrome` — Run all tests in Chrome browser (headless)
+- `npm run test:spec -- --spec <path>` — Run a specific spec file
+- `npm run api:test` — Run only API tests (all *Api*.spec.js files)
+- `npm run allure:report` — Generate and open the Allure HTML report from results
+
+You can also use the underlying `npx cypress` and `npx allure` commands directly as shown above.
+
+---
+
 ## Support
 For issues, please raise a ticket or contact the project maintainer.
