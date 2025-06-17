@@ -1,6 +1,7 @@
 // src/pages/HomePage.ts
 import { Page, Locator, expect } from '@playwright/test';
 import { assertProductCatalogVisible, assertKeyUIElements, navigateToHome } from '../utils/helpers';
+import logger from '../utils/logger';
 
 export const HomePageLocators = {
   catalog: "mat-grid-list",
@@ -85,7 +86,7 @@ export class HomePage {
     await this.page.waitForTimeout(500);
 
     if (await dismissBtn.isVisible().catch(() => false)) {
-      if (dialogName) console.log(`${dialogName} is visible, dismissing...`);
+      if (dialogName) logger.info(`${dialogName} is visible, dismissing...`);
       if (beforeScreenshot) {
         await this.page.screenshot({ path: beforeScreenshot });
       }
@@ -96,12 +97,12 @@ export class HomePage {
         .waitForSelector(selector, { state: "hidden", timeout: 5000 })
         .catch(() => {});
 
-      if (dialogName) console.log(`${dialogName} dismissed.`);
+      if (dialogName) logger.info(`${dialogName} dismissed.`);
       if (afterScreenshot) {
         await this.page.screenshot({ path: afterScreenshot });
       }
     } else {
-      if (dialogName) console.log(`${dialogName} not found.`);
+      if (dialogName) logger.info(`${dialogName} not found.`);
       if (notFoundScreenshot) {
         await this.page.screenshot({ path: notFoundScreenshot });
       }

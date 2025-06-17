@@ -8,9 +8,8 @@
     "open": "npx cypress open",
     "test:headed": "npx cypress open",
     "test:chrome": "npx cypress run --browser chrome",
-    "test:firefox": "npx cypress run --browser firefox",
-    "test:edge": "npx cypress run --browser edge",
     "test:spec": "npx cypress run --spec",
+    "api:test": "cypress run --spec 'cypress/integration/*Api*.spec.js'",
     "allure:report": "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
   },
   "author": "",
