@@ -37,7 +37,9 @@ TestingCOE/
   ```powershell
   cd playwright
   npm install
-  npx playwright test
+  npx playwright test --project=chromium         # Run UI tests (Chromium browser)
+  npx playwright test --project=api              # Run API tests only
+  npx playwright test --project=chromium --project=api  # Run both UI and API tests together
   ```
 - Configure Playwright in `playwright/playwright.config.js` and environment variables as needed.
 
@@ -93,7 +95,38 @@ See the `cypress/` and `playwright/` subproject READMEs for framework-specific d
 
 ---
 
-## Support
-For issues, please raise a ticket or contact the project maintainer.
+## Automated Test Comparison: Playwright vs Cypress
+
+This project includes a Node.js script to automate running both Playwright and Cypress test suites, capture their results, and compare pass/fail counts and durations for robust analysis.
+
+### How to Run the Comparison
+
+1. **Run the comparison script from the project root:**
+   
+   ```powershell
+   node compareTestResults.js
+   ```
+
+2. **Result files will be stored in a dedicated `test-comparison-results/` folder** (created automatically if it doesn't exist). Each run generates timestamped result files, e.g.:
+   - `test-comparison-results/playwright-results-YYYY-MM-DDTHH-MM-SS.txt`
+   - `test-comparison-results/cypress-results-YYYY-MM-DDTHH-MM-SS.txt`
+
+3. **The script prints a summary comparison** (pass/fail counts, durations) to the console for quick review.
+
+4. **Historical results are retained** for future analysis of flakiness, performance, and error trends.
+
+### Cross-Platform Test Execution
+
+The comparison script is designed to work on both Windows and Unix-based systems. It uses Node.js's `cwd` option to ensure that Playwright and Cypress tests are executed from their respective subfolders, regardless of your operating system. No shell-specific commands are used, so you can run the script with confidence on any platform supported by Node.js.
 
 ---
+
+**Tip:**
+- You can extend the script to parse per-test timings, error messages, or flake rates for deeper insights.
+- See `test-comparison-template.md` for more details and advanced usage.
+
+---
+
+## Support
+
+For issues, please raise a ticket or contact the project maintainer.
