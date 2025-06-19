@@ -54,4 +54,9 @@ export class HomePage {
   getLogoutButton() {
     return cy.get('button[aria-label="Logout"]');
   }
+
+  getProfileButton() {
+    // Assumes account menu is already open
+    return cy.get('div[role="menu"] button[aria-label="Go to user profile"]');
+  }
 }

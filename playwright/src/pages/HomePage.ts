@@ -1,6 +1,7 @@
 // src/pages/HomePage.ts
 import { Page, Locator, expect } from '@playwright/test';
 import { assertProductCatalogVisible, assertKeyUIElements, navigateToHome } from '../utils/helpers';
+import { dismissCommonOverlays } from '../utils/dialogs';
 import logger from '../utils/logger';
 
 export const HomePageLocators = {
@@ -36,77 +37,10 @@ export class HomePage {
 
   async goto(baseUrl: string) {
     await navigateToHome(this.page, baseUrl);
-    // Debug screenshot after navigation
-    await this.page.screenshot({ path: "homepage-after-nav.png" });
+    logger.info(`Navigated to home page: ${baseUrl}`);
 
-    // Dismiss cookie consent dialog if present
-    await this.dismissDialog(
-      'a[aria-label="dismiss cookie message"]',
-      undefined,
-      undefined,
-      undefined,
-      "Cookie dialog"
-    );
-
-    // Dismiss welcome banner if present
-   /*  await this.dismissDialog(
-      'button[aria-label="Close Welcome Banner"]',
-      "before-welcome-dismiss.png",
-      "after-welcome-dismiss.png",
-      "welcome-banner-not-found.png",
-      "Welcome banner"
-    ); */
-    await this.dismissDialog(
-      'button[aria-label="Close Welcome Banner"]',
-      undefined,
-      undefined,
-      undefined,
-      "Welcome banner"
-    );
-  }
-
-  /**
-   * Dismiss a dialog/banner if present, with logging and optional screenshot debugging.
-   * @param selector CSS or XPath selector for the dismiss button
-   * @param beforeScreenshot (optional) Name for screenshot before attempting dismiss
-   * @param afterScreenshot (optional) Name for screenshot after dismiss
-   * @param notFoundScreenshot (optional) Name for screenshot if dialog not found
-   * @param dialogName Name for logging
-   */
-  private async dismissDialog(
-    selector: string,
-    beforeScreenshot?: string,
-    afterScreenshot?: string,
-    notFoundScreenshot?: string,
-    dialogName?: string
-  ) {
-    const dismissBtn = this.page.locator(selector);
-
-    // Wait briefly in case dialog appears slightly later
-    await this.page.waitForTimeout(500);
-
-    if (await dismissBtn.isVisible().catch(() => false)) {
-      if (dialogName) logger.info(`${dialogName} is visible, dismissing...`);
-      if (beforeScreenshot) {
-        await this.page.screenshot({ path: beforeScreenshot });
-      }
-      await dismissBtn.click();
-
-      // Wait for it to become hidden (more appropriate than detached)
-      await this.page
-        .waitForSelector(selector, { state: "hidden", timeout: 5000 })
-        .catch(() => {});
-
-      if (dialogName) logger.info(`${dialogName} dismissed.`);
-      if (afterScreenshot) {
-        await this.page.screenshot({ path: afterScreenshot });
-      }
-    } else {
-      if (dialogName) logger.info(`${dialogName} not found.`);
-      if (notFoundScreenshot) {
-        await this.page.screenshot({ path: notFoundScreenshot });
-      }
-    }
+    // Dismiss common overlays like cookie consent and welcome banners
+    await dismissCommonOverlays(this.page);
   }
 
   async isCatalogVisible() {
@@ -141,5 +75,11 @@ export class HomePage {
     // Assumes account menu is already open
     const loginButton = this.page.locator("#navbarLoginButton");
     await loginButton.click();
+  }
+
+  async goToProfilePage() {
+    // Assumes account menu is already open
+    const profileButton = this.page.locator('div[role="menu"] button[aria-label="Go to user profile"]');
+    await profileButton.click();
   }
 }

@@ -1,5 +1,6 @@
 // src/pages/LoginPage.ts
 import { Page, Locator, expect } from '@playwright/test';
+import { dismissCommonOverlays } from '../utils/dialogs';
 
 export class LoginPage {
   readonly page: Page;
@@ -14,12 +15,8 @@ export class LoginPage {
     this.loginButton = page.locator('#loginButton');
   }
 
-  async goto(baseUrl: string) {
-    await this.page.goto(baseUrl + '/#/login');
-    await expect(this.page).toHaveURL(/.*\/login/);
-  }
-
   async login(email: string, password: string) {
+    await dismissCommonOverlays(this.page);
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
