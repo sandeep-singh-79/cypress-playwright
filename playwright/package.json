@@ -20,7 +20,9 @@
     "allure-playwright": "^3.2.2",
     "eslint": "^9.29.0",
     "prettier": "^3.5.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "winston": "^3.17.0",
+    "allure-commandline": "2.34.0"
   },
   "dependencies": {
     "winston": "^3.17.0"
