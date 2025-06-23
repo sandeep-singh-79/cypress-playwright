@@ -1,5 +1,7 @@
 # Cypress to Playwright Migration Project
 
+[![CI - Playwright & Cypress](https://github.com/sandeep-singh-79/cypress-playwright/actions/workflows/ci.yml/badge.svg)](https://github.com/sandeep-singh-79/cypress-playwright/actions/workflows/ci.yml)
+
 ## Overview
 
 This branch is dedicated to showcasing the migration of automation scripts from Cypress (JavaScript/TypeScript) to Playwright (JavaScript/TypeScript). Both frameworks are included in the repository, with each residing in its own folder. This setup allows for direct comparison, stepwise migration, and validation of test coverage between the two tools.
@@ -124,6 +126,22 @@ The comparison script is designed to work on both Windows and Unix-based systems
 **Tip:**
 - You can extend the script to parse per-test timings, error messages, or flake rates for deeper insights.
 - See `test-comparison-template.md` for more details and advanced usage.
+
+---
+
+## Continuous Integration (CI) with GitHub Actions
+
+This repository includes a robust GitHub Actions workflow that automatically validates both Playwright and Cypress test runs on every pull request to the `main` branch.
+
+- The workflow:
+  - Caches npm dependencies for faster builds.
+  - Sets up Node.js and installs dependencies for each tool.
+  - Starts the backend (Juice Shop) using Docker Compose and waits for it to be ready before running tests.
+  - Runs Playwright and Cypress tests in parallel matrix jobs.
+  - Generates and uploads Allure reports and test result artifacts for both frameworks.
+  - Cleans up the backend after tests complete.
+
+You can find the workflow file at `.github/workflows/ci.yml`.
 
 ---
 
