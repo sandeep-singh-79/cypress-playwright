@@ -28,3 +28,6 @@ Thumbs.db
 
 # Misc
 *.log
+
+# Test comparison results (execution logs)
+test-comparison-results/*.txt
