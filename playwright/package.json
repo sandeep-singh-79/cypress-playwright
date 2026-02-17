@@ -15,16 +15,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.41.1",
-    "@types/node": "^24.0.1",
-    "allure-playwright": "^3.2.2",
-    "eslint": "^9.29.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.4.5",
-    "winston": "^3.17.0",
-    "allure-commandline": "2.34.0"
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.2.3",
+    "allure-playwright": "^3.4.5",
+    "eslint": "^10.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "winston": "^3.19.0",
+    "allure-commandline": "2.36.0"
   },
   "dependencies": {
-    "winston": "^3.17.0"
+    "winston": "^3.19.0"
   }
 }
