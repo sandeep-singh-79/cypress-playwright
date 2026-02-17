@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/cypress"
+    schedule:
+      interval: "weekly"
+    groups:
+      all-deps:
+        patterns:
+          - "*"
+  - package-ecosystem: "npm"
+    directory: "/playwright"
+    schedule:
+      interval: "weekly"
+    groups:
+      all-deps:
+        patterns:
+          - "*"
