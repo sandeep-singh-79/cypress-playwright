@@ -16,13 +16,13 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.3",
-    "allure-playwright": "^3.5.0",
-    "eslint": "^10.0.2",
+    "@types/node": "^25.5.0",
+    "allure-playwright": "^3.6.0",
+    "eslint": "^10.0.3",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "winston": "^3.19.0",
-    "allure-commandline": "2.37.0"
+    "allure-commandline": "2.38.0"
   },
   "dependencies": {
     "winston": "^3.19.0"
