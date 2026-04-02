@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   juice-shop:
-    image: bkimminich/juice-shop
+    image: bkimminich/juice-shop:v19.2.1
     container_name: juice-shop
     ports:
       - "3000:3000"
