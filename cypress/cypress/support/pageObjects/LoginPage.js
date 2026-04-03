@@ -17,5 +17,6 @@ export class LoginPage {
     this.getEmailInput().type(email);
     this.getPasswordInput().type(password);
     this.getLoginButton().click();
+    cy.get('.cdk-overlay-backdrop').should('not.exist');
   }
 }

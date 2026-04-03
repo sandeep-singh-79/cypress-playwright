@@ -6,13 +6,16 @@ export class HomePage {
   }
 
   dismissCookieDialog() {
-    cy.get('a[aria-label="dismiss cookie message"]', { timeout: 5000 })
-      .then($el => { if ($el.is(':visible')) cy.wrap($el).click(); });
+    cy.get('a[aria-label="dismiss cookie message"]', { timeout: 6000 })
+      .should('be.visible')
+      .click();
   }
 
   dismissWelcomeBanner() {
-    cy.get('button[aria-label="Close Welcome Banner"]', { timeout: 5000 })
-      .then($el => { if ($el.is(':visible')) cy.wrap($el).click(); });
+    cy.get('button[aria-label="Close Welcome Banner"]', { timeout: 6000 })
+      .should('be.visible')
+      .click();
+    cy.get('.cdk-overlay-backdrop', { timeout: 10000 }).should('not.exist');
   }
 
   getCatalog() {
