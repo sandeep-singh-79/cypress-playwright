@@ -13,6 +13,7 @@ export class HomePage {
   dismissWelcomeBanner() {
     cy.get('button[aria-label="Close Welcome Banner"]', { timeout: 5000 })
       .then($el => { if ($el.is(':visible')) cy.wrap($el).click(); });
+    cy.get('.cdk-overlay-backdrop').should('not.exist');
   }
 
   getCatalog() {
