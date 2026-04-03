@@ -22,12 +22,22 @@ playwright/
 
 ---
 
+## Prerequisites
+- Node.js 22+
+- Docker (to run OWASP Juice Shop locally via `docker-compose.yml` in the project root)
+
+---
+
 ## Test Case Coverage
 
-- **Low-complexity UI scenarios automated:**
-  - Homepage load: verifies product catalog and key UI elements
-  - Product details: verifies product details page displays all required info
-  - Logout: verifies logout functionality and access control
+- **UI scenarios:**
+  - **Homepage load** (`homepage.spec.ts`): verifies product catalog and key UI elements
+  - **Product details** (`productDetails.spec.ts`): verifies product details page displays all required info
+  - **Logout** (`logout.spec.ts`): verifies logout functionality and access control
+  - **User profile update** (`profileUpdate.spec.ts`): verifies username update is reflected in profile display
+
+- **API scenarios:**
+  - **Basket & order flow** (`api/basketApi.spec.ts`): end-to-end API flow — login, add product to basket, place order, verify basket is empty
 
 - **Best practices implemented:**
   - Page Object Model for all major pages
