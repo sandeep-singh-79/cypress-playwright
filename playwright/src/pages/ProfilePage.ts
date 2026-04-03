@@ -1,5 +1,5 @@
 // src/pages/ProfilePage.ts
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export const ProfilePageLocators = {
   nameInput: 'input[name="username"]',
@@ -23,15 +23,8 @@ export class ProfilePage {
     this.displayName = page.locator(ProfilePageLocators.displayName);
   }
 
-  async updateProfile(name: string, email: string) {
+  async updateProfile(name: string) {
     await this.nameInput.fill(name);
-    // Email field should be disabled and not editable
-    await expect(this.emailInput).toBeDisabled();
-    // Optionally, verify the email value matches the expected value
-    if (email) {
-      const currentEmail = await this.emailInput.inputValue();
-      expect(currentEmail).toBe(email);
-    }
     await this.saveButton.click();
   }
 

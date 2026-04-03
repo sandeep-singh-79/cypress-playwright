@@ -22,10 +22,18 @@ cypress/
 
 ---
 
+## Prerequisites
+- Node.js 22+
+- Docker (to run OWASP Juice Shop locally via `docker-compose.yml` in the project root)
+
+---
+
 ## Test Case Coverage
-- Homepage load: verifies product catalog and key UI elements
-- Product details: verifies product details page displays all required info (name, price, description, image)
-- Logout: verifies logout functionality and access control
+- **Homepage load** (`homepage.spec.js`): verifies product catalog and key UI elements
+- **Product details** (`productDetails.spec.js`): verifies product details page displays all required info (name, price, description, image)
+- **Logout** (`logout.spec.js`): verifies logout functionality and access control
+- **User profile update** (`profileUpdate.spec.js`): verifies username update is reflected in profile display
+- **Order placement API** (`orderPlacementApi.spec.js`): end-to-end API flow — login, add product to basket, place order, verify basket is empty
 
 ---
 

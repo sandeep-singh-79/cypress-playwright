@@ -14,4 +14,16 @@
 
 import '@shelex/cypress-allure-plugin';
 
-Cypress.on('uncaught:exception', (err, runnable) => false);
+// Juice Shop v19.2.x emits Angular/zone.js uncaught exceptions that are
+// cosmetic and do not affect test outcomes. Suppress only those; let all
+// other uncaught exceptions propagate so real bugs are not silently ignored.
+Cypress.on('uncaught:exception', (err) => {
+  if (
+    err.message.includes('Non-Error promise rejection') ||
+    err.message.includes('zone') ||
+    err.message.includes('ngZone') ||
+    err.message.includes('ExpressionChangedAfterItHasBeenCheckedError')
+  ) {
+    return false;
+  }
+});

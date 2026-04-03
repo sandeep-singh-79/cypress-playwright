@@ -132,9 +132,10 @@ This repository includes a robust GitHub Actions workflow that automatically val
 
 - The workflow:
   - Caches npm dependencies for faster builds.
-  - Sets up Node.js and installs dependencies for each tool.
-  - Starts the backend (Juice Shop) using Docker Compose and waits for it to be ready before running tests.
-  - Runs Playwright and Cypress tests in parallel matrix jobs.
+  - Sets up **Node.js 22** and installs dependencies for each tool.
+  - Installs required Cypress system dependencies for Ubuntu 24.04 (`libgtk-3-0t64`, `libasound2t64`, etc.).
+  - Starts the backend (**OWASP Juice Shop `v19.2.1`**) using Docker Compose and waits for it to be ready before running tests.
+  - Runs Playwright and Cypress tests in **parallel matrix jobs** (`fail-fast: false`).
   - Generates and uploads Allure reports and test result artifacts for both frameworks.
   - Cleans up the backend after tests complete.
 
