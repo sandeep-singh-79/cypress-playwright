@@ -26,7 +26,7 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
     video: "retain-on-failure",
     screenshot: "only-on-failure",
-    baseURL: "http://localhost:3000", // Update as needed
+    baseURL: process.env.BASE_URL || "http://localhost:3000",
   },
   projects: [
     {
