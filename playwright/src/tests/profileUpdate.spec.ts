@@ -4,7 +4,6 @@ import { LoginPage } from '../pages/LoginPage';
 import { ProfilePage } from '../pages/ProfilePage';
 import { HomePage } from '../pages/HomePage';
 import { testData } from '../utils/testData';
-import { log, profile } from 'console';
 import logger from '../utils/logger';
 
 // TDD: Start with a failing test for user profile update
@@ -30,8 +29,7 @@ test.describe('User Profile Update', () => {
     // Step 5: Update profile fields
     const profilePage = new ProfilePage(page);
     const newName = 'Test User Updated';
-    const newEmail = testData.admin.email;
-    await profilePage.updateProfile(newName, newEmail);
+    await profilePage.updateProfile(newName);
 
     // Step 6: Assert the displayed name in the <p> tag is updated
     const updatedName = await profilePage.getDisplayedName();

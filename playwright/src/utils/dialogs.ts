@@ -9,28 +9,16 @@ export async function dismissDialog(
   page: Page,
   selector: string,
   dialogName?: string,
-  beforeScreenshot?: string,
-  afterScreenshot?: string,
-  notFoundScreenshot?: string
 ) {
   const dismissBtn = page.locator(selector);
-  await page.waitForTimeout(500);
-  if (await dismissBtn.isVisible().catch(() => false)) {
+  try {
+    await dismissBtn.waitFor({ state: 'visible', timeout: 6000 });
     if (dialogName) logger.info(`${dialogName} is visible, dismissing...`);
-    if (beforeScreenshot) {
-      await page.screenshot({ path: beforeScreenshot });
-    }
     await dismissBtn.click();
-    await page.waitForSelector(selector, { state: 'hidden', timeout: 5000 }).catch(() => {});
+    await dismissBtn.waitFor({ state: 'hidden', timeout: 6000 });
     if (dialogName) logger.info(`${dialogName} dismissed.`);
-    if (afterScreenshot) {
-      await page.screenshot({ path: afterScreenshot });
-    }
-  } else {
-    if (dialogName) logger.info(`${dialogName} not found.`);
-    if (notFoundScreenshot) {
-      await page.screenshot({ path: notFoundScreenshot });
-    }
+  } catch {
+    if (dialogName) logger.info(`${dialogName} not found or already dismissed.`);
   }
 }
 
@@ -41,4 +29,6 @@ export async function dismissDialog(
 export async function dismissCommonOverlays(page: Page) {
   await dismissDialog(page, 'a[aria-label="dismiss cookie message"]', 'Cookie dialog');
   await dismissDialog(page, 'button[aria-label="Close Welcome Banner"]', 'Welcome banner');
+  // Wait for Angular CDK overlay backdrop to clear after banner close animation
+  await page.locator('.cdk-overlay-backdrop').waitFor({ state: 'hidden', timeout: 10000 }).catch(() => {});
 }
